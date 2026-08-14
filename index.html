@@ -293,6 +293,7 @@
 <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
 <script>
 /* ============ SCÈNE 3D WEBGL — particules cyan/violet ============ */
+try {
 const canvas = document.getElementById('bg');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
 renderer.setSize(innerWidth, innerHeight);
@@ -393,6 +394,7 @@ order.addEventListener('mouseleave', () => { order.style.transform = 'rotateX(0)
   camera.lookAt(0,0,0);
   renderer.render(scene, camera);
 })();
+} catch (err) { var bgEl = document.getElementById('bg'); if (bgEl) bgEl.style.display = 'none'; }
 
 /* ============ FORMULAIRE DE COMMANDE — EmailJS (réel) ============ */
 function selectOffer(value){
