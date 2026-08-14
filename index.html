@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marque Vendable — Le playbook pour construire une marque qu'on vous achète</title>
+<meta name="description" content="Thorne vendue 3,8 Md$ à P&G. Béis : 210 M$. Deux marques solo, une méthode. Le playbook complet pour construire une marque vendable : positionnement premium, preuve, metrics build-to-sell, due diligence, exit. Playbook 19 €, playbook + 5 templates 39 €, pack préparation à l'exit 79 €.">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', system-ui, sans-serif; background:#070b14; color:#e8ecf5; overflow-x:hidden; }
+  #bg { position:fixed; inset:0; z-index:0; }
+  .content { position:relative; z-index:2; }
+
+  /* ---------- Nav ---------- */
+  .nav { position:fixed; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center;
+         padding:1.2rem 2.5rem; background:linear-gradient(rgba(7,11,20,.85), transparent); }
+  .logo { font-weight:800; font-size:1.15rem; letter-spacing:.02em; }
+  .logo span { color:#22d3ee; }
+  .nav a { color:#aab8d0; text-decoration:none; margin-left:1.5rem; font-size:.9rem; }
+  .nav a:hover { color:#7dd3fc; }
+
+  /* ---------- Hero ---------- */
+  .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; padding:6rem 6vw 4rem; }
+  .hero-inner { transform-style:preserve-3d; width:100%; max-width:1100px; }
+  .layer { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; will-change:transform; }
+  .badge { display:inline-flex; align-items:center; gap:.5rem; border:1px solid rgba(34,211,238,.35); background:rgba(34,211,238,.08);
+           color:#7dd3fc; border-radius:999px; padding:.45rem 1.1rem; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
+  .title { font-size:clamp(2.1rem, 6vw, 4.6rem); font-weight:800; letter-spacing:-0.02em; line-height:1.15;
+           background:linear-gradient(120deg,#5eead4,#38bdf8,#818cf8); -webkit-background-clip:text; background-clip:text; color:transparent;
+           text-shadow:0 0 40px rgba(56,189,248,.25); }
+  .title .hl { display:block; font-size:clamp(1.5rem, 4.2vw, 3.1rem); font-weight:700;
+               background:linear-gradient(120deg,#a5f3fc,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:.6rem; }
+  .subtitle { font-size:clamp(1rem, 2.2vw, 1.35rem); color:#9fb0c9; margin-top:1.4rem; font-weight:300; max-width:720px; margin-left:auto; margin-right:auto; }
+  .cta { margin-top:2.5rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
+  .btn { padding:.9rem 2rem; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; border:none; cursor:pointer; font-size:1rem; font-family:inherit; }
+  .btn-primary { background:linear-gradient(120deg,#0ea5e9,#7c3aed); color:#fff; box-shadow:0 0 30px rgba(124,58,237,.45); }
+  .btn-ghost { border:1px solid rgba(255,255,255,.25); color:#dbe4f0; background:transparent; }
+  .btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 0 45px rgba(124,58,237,.65); }
+  .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:#5b6b85; font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; animation:float 2.4s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,-10px)} }
+
+  /* ---------- Sections ---------- */
+  section { position:relative; padding:5.5rem 6vw; }
+  .kicker { color:#22d3ee; font-size:.8rem; letter-spacing:.22em; text-transform:uppercase; font-weight:700; margin-bottom:.8rem; }
+  h2.section-title { font-size:clamp(1.8rem, 4.5vw, 2.8rem); font-weight:800; letter-spacing:-.01em; margin-bottom:1rem;
+                     background:linear-gradient(120deg,#a5f3fc,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .section-intro { color:#aab8d0; max-width:760px; line-height:1.7; margin-bottom:2.6rem; }
+
+  /* ---------- Stats ---------- */
+  .stats { display:flex; gap:2.2rem; margin-top:2rem; flex-wrap:wrap; justify-content:center; }
+  .stat b { font-size:1.7rem; color:#7dd3fc; display:block; }
+  .stat span { color:#7c8aa5; font-size:.85rem; }
+  .stat-line { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.4rem; margin:2.8rem 0; }
+  .stat-box { background:rgba(13,18,32,.7); border:1px solid rgba(255,255,255,.09); border-radius:18px; padding:1.6rem; text-align:center; backdrop-filter:blur(12px); }
+  .stat-box b { font-size:2rem; color:#22d3ee; display:block; }
+  .stat-box span { color:#8b9bb5; font-size:.85rem; }
+
+  /* ---------- Cartes playbook ---------- */
+  .chapters { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.3rem; }
+  .chapter { background:rgba(13,18,32,.7); border:1px solid rgba(255,255,255,.09); border-radius:20px; padding:1.7rem; transition:transform .25s, border-color .25s; backdrop-filter:blur(12px); }
+  .chapter:hover { transform:translateY(-5px); border-color:rgba(34,211,238,.45); }
+  .chapter .num { font-size:.8rem; font-weight:800; color:#7c3aed; letter-spacing:.1em; }
+  .chapter h3 { font-size:1.12rem; margin:.5rem 0 .6rem; color:#e8ecf5; }
+  .chapter p { color:#8b9bb5; font-size:.9rem; line-height:1.6; }
+
+  /* ---------- Offres ---------- */
+  .pricing { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; align-items:stretch; }
+  .plan { background:rgba(13,18,32,.75); border:1px solid rgba(255,255,255,.1); border-radius:22px; padding:2rem 1.8rem; display:flex; flex-direction:column; position:relative; backdrop-filter:blur(12px); }
+  .plan.featured { border-color:rgba(124,58,237,.65); box-shadow:0 0 55px rgba(124,58,237,.28); }
+  .plan .tag { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(120deg,#0ea5e9,#7c3aed); color:#fff; font-size:.7rem; font-weight:800; padding:.32rem 1rem; border-radius:999px; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; box-shadow:0 4px 18px rgba(124,58,237,.5); }
+  .plan h3 { font-size:1.15rem; color:#e8ecf5; }
+  .plan .price { font-size:2.5rem; font-weight:800; margin:.7rem 0 .2rem; background:linear-gradient(120deg,#5eead4,#38bdf8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .plan .price small { font-size:.9rem; color:#7c8aa5; font-weight:400; -webkit-text-fill-color:#7c8aa5; }
+  .plan ul { list-style:none; margin:1.2rem 0 1.6rem; flex:1; }
+  .plan li { padding:.4rem 0; color:#aab8d0; font-size:.92rem; padding-left:1.6rem; position:relative; }
+  .plan li::before { content:"✓"; position:absolute; left:0; color:#22d3ee; font-weight:700; }
+  .plan .btn { text-align:center; display:block; }
+
+  /* ---------- Formulaire ---------- */
+  .order { max-width:720px; margin:0 auto; background:rgba(13,18,32,.8); border:1px solid rgba(34,211,238,.35); border-radius:24px; padding:2.4rem; backdrop-filter:blur(14px); box-shadow:0 30px 80px rgba(0,0,0,.5); }
+  .order h3 { font-size:1.4rem; margin-bottom:.4rem; }
+  .order .sub { color:#8b9bb5; font-size:.92rem; margin-bottom:1.6rem; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  @media (max-width:700px){ .grid2{grid-template-columns:1fr;} }
+  .f { margin-bottom:1rem; }
+  .f label { display:block; font-size:.85rem; color:#7dd3fc; margin-bottom:.35rem; font-weight:600; }
+  .f input, .f select, .f textarea { width:100%; padding:.75rem .95rem; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:#0b1220; color:#e8ecf5; font-size:.95rem; outline:none; font-family:inherit; transition:border-color .2s; }
+  .f input:focus, .f select:focus, .f textarea:focus { border-color:#22d3ee; }
+  .f textarea { resize:vertical; min-height:90px; }
+  .note { font-size:.8rem; color:#7c8aa5; margin-top:.9rem; line-height:1.6; }
+  .success { background:rgba(34,211,238,.1); border:1px solid rgba(34,211,238,.45); color:#a5f3fc; border-radius:14px; padding:1rem 1.2rem; margin-top:1.2rem; display:none; font-size:.95rem; }
+  .success.visible { display:block; }
+
+  /* ---------- Garantie & footer ---------- */
+  .guarantee { display:flex; gap:1rem; align-items:center; background:rgba(13,18,32,.6); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1.3rem 1.5rem; margin-top:3rem; max-width:720px; margin-left:auto; margin-right:auto; }
+  .guarantee .ico { font-size:1.8rem; }
+  .guarantee b { color:#e8ecf5; display:block; margin-bottom:.2rem; }
+  .guarantee p { color:#8b9bb5; font-size:.88rem; line-height:1.55; }
+  .footer { border-top:1px solid rgba(255,255,255,.08); margin-top:2rem; padding:2.4rem 6vw 3rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; color:#5b6b85; font-size:.85rem; line-height:1.7; }
+  .footer a { color:#7dd3fc; text-decoration:none; }
+  .footer a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">Marque<span>Vendable</span></div>
+  <div>
+    <a href="#playbook">Le playbook</a>
+    <a href="#offres">Offres</a>
+    <a href="#commander">Commander</a>
+  </div>
+</nav>
+
+<canvas id="bg"></canvas>
+
+<div class="content">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="layer" data-depth="0.35" style="top:6%">
+        <div class="badge">Cas réels 2026 · Méthode actionnable</div>
+      </div>
+      <div class="layer" data-depth="0.45" style="top:30%">
+        <div class="title">
+          Thorne vendue 3,8&nbsp;Md$ à P&amp;G.
+          <span class="hl">Béis&nbsp;: 210&nbsp;M$. Deux marques solo. Une méthode.</span>
+        </div>
+      </div>
+      <div class="layer" data-depth="0.55" style="top:62%">
+        <div class="subtitle">Le playbook qui décortique comment des fondateurs solo ont construit des marques que de grands groupes se sont arrachées — et comment appliquer la même méthode à la vôtre.</div>
+      </div>
+      <div class="layer" data-depth="0.7" style="top:80%">
+        <div class="cta">
+          <a class="btn btn-primary" href="#offres">Voir les offres →</a>
+          <a class="btn btn-ghost" href="#playbook">Découvrir la méthode</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">Défilez</div>
+  </section>
+
+  <!-- ================= LE PLAYBOOK ================= -->
+  <section id="playbook">
+    <div class="kicker">Le playbook</div>
+    <h2 class="section-title">Ce que contient la méthode</h2>
+    <p class="section-intro">60 à 80 pages denses, zéro blabla. Chaque chapitre combine une leçon applicable, les chiffres réels des deux cas étudiés et une checklist d'action concrète. Vous ne lisez pas une théorie : vous suivez un chemin déjà emprunté par deux marques solo qui se sont vendues à neuf chiffres.</p>
+
+    <div class="stat-line">
+      <div class="stat-box"><b>3,8&nbsp;Md$</b><span>Thorne, vendue à P&amp;G</span></div>
+      <div class="stat-box"><b>210&nbsp;M$</b><span>Béis, marque solo valorisée</span></div>
+      <div class="stat-box"><b>8</b><span>chapitres, de la position au transfert</span></div>
+      <div class="stat-box"><b>5</b><span>templates prêts à l'emploi</span></div>
+    </div>
+
+    <div class="chapters">
+      <div class="chapter"><div class="num">Chapitre 01</div><h3>Pourquoi les marques solo se vendent cher</h3><p>Ce qui fait réellement la valeur d'une marque, les 4 moteurs de valorisation et pourquoi l'absence d'équipe est un atout… à condition de gérer la dépendance fondateur.</p></div>
+      <div class="chapter"><div class="num">Chapitre 02</div><h3>Le positionnement premium — leçon Thorne</h3><p>Comment une marque de santé a justifié un prix premium par la science et la confiance, et les 5 piliers pour positionner la vôtre au-dessus du marché.</p></div>
+      <div class="chapter"><div class="num">Chapitre 03</div><h3>La preuve qui rassure l'acheteur</h3><p>Un acheteur paie pour ce qu'il peut vérifier. Construire la preuve (revenus, clients, récurrence, propriété intellectuelle) au fil de l'eau, pas la veille de la vente.</p></div>
+      <div class="chapter"><div class="num">Chapitre 04</div><h3>Les metrics build-to-sell</h3><p>Revenus récurrents, dépendance fondateur, marge, croissance : les 4 familles de chiffres qui font bouger un multiple, avec les seuils qui déclenchent la hausse.</p></div>
+      <div class="chapter"><div class="num">Chapitre 05</div><h3>Construire sans équipe — leçon Béis</h3><p>La marque de bagagerie lancée sans structure lourde : opérateurs tiers, automatisation, systèmes documentés. Le mode d'emploi solopreneur.</p></div>
+      <div class="chapter"><div class="num">Chapitre 06</div><h3>La due diligence côté acheteur</h3><p>Ce que l'acheteur vérifie vraiment, les 10 questions qui tuent une vente et comment préparer un data room qui accélère au lieu de bloquer.</p></div>
+      <div class="chapter"><div class="num">Chapitre 07</div><h3>Le moment de vendre</h3><p>Reconnaître la fenêtre idéale, se mettre en état « prêt à vendre » 12 à 24 mois avant, et dérouler un process d'exit réaliste de 6 à 12 mois.</p></div>
+      <div class="chapter"><div class="num">Chapitre 08</div><h3>La négociation et le transfert</h3><p>Valorisation, structure du deal, earn-out, garanties : négocier sans se faire piéger, puis transférer proprement et encaisser sans accroc.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= OFFRES ================= -->
+  <section id="offres">
+    <div class="kicker">Offres</div>
+    <h2 class="section-title">Trois façons de démarrer</h2>
+    <p class="section-intro">Livraison par email sous 24-48&nbsp;h. Garantie 14 jours satisfait ou remboursé, sans condition. Le prix affiché est le prix final, sans abonnement caché.</p>
+
+    <div class="pricing">
+      <div class="plan">
+        <h3>Playbook PDF</h3>
+        <div class="price">19&nbsp;€</div>
+        <ul>
+          <li>Le playbook complet, 60-80 pages</li>
+          <li>8 chapitres, leçons denses et chiffres réels</li>
+          <li>Checklist d'action à chaque chapitre</li>
+          <li>Cas Thorne (3,8&nbsp;Md$) et Béis (210&nbsp;M$) décortiqués</li>
+          <li>Glossaire M&amp;A et chiffres de référence</li>
+        </ul>
+        <a class="btn btn-primary" href="#commander" onclick="selectOffer('Playbook PDF — 19 €')">Commander 19&nbsp;€</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="tag">Best value</div>
+        <h3>Playbook + 5 templates</h3>
+        <div class="price">39&nbsp;€</div>
+        <ul>
+          <li>Tout le playbook PDF</li>
+          <li>5 templates .md prêts à l'emploi</li>
+          <li>Positionnement premium</li>
+          <li>Metrics tracker build-to-sell</li>
+          <li>Fiche due diligence + chronologie d'exit</li>
+          <li>Pitch acheteur</li>
+        </ul>
+        <a class="btn btn-primary" href="#commander" onclick="selectOffer('Playbook + 5 templates — 39 €')">Commander 39&nbsp;€</a>
+      </div>
+
+      <div class="plan">
+        <h3>Pack préparation à l'exit</h3>
+        <div class="price">79&nbsp;€</div>
+        <ul>
+          <li>Tout le playbook + les 5 templates</li>
+          <li>Audit manuel de votre préparation</li>
+          <li>Vos metrics passés au crible build-to-sell</li>
+          <li>Votre fiche due diligence complétée et revue</li>
+          <li>Chronologie d'exit personnalisée</li>
+          <li>Recommandations écrites sous 72&nbsp;h</li>
+        </ul>
+        <a class="btn btn-primary" href="#commander" onclick="selectOffer('Pack préparation à l\'exit — 79 €')">Commander 79&nbsp;€</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMMANDER ================= -->
+  <section id="commander">
+    <div class="kicker">Commander</div>
+    <h2 class="section-title" style="text-align:center;">Commandez votre playbook</h2>
+
+    <div class="order" id="order">
+      <h3>Votre commande</h3>
+      <p class="sub">Choisissez votre offre, laissez vos coordonnées : vous recevez la confirmation par email, puis le livrable sous 24-48&nbsp;h.</p>
+      <form id="orderForm">
+        <div class="grid2">
+          <div class="f">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" placeholder="Prénom et nom" required>
+          </div>
+          <div class="f">
+            <label for="email">Votre email</label>
+            <input type="email" id="email" placeholder="vous@exemple.fr" required>
+          </div>
+        </div>
+        <div class="f">
+          <label for="offer">Offre choisie</label>
+          <select id="offer" required>
+            <option value="Playbook PDF — 19 €">Playbook PDF — 19&nbsp;€</option>
+            <option value="Playbook + 5 templates — 39 €">Playbook + 5 templates — 39&nbsp;€</option>
+            <option value="Pack préparation à l'exit — 79 €">Pack préparation à l'exit — 79&nbsp;€</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="question">Votre question ou précision (facultatif)</label>
+          <textarea id="question" placeholder="Ex. : je suis fondateur d'une marque de cosmétiques, je vise un exit dans 3 ans…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;">Commander maintenant</button>
+        <p class="note">🔒 Vos données servent uniquement à traiter votre commande. Aucun spam, désinscription en un clic. Garantie 14 jours satisfait ou remboursé.</p>
+      </form>
+      <div class="success" id="successMsg">
+        <b>✓ Commande envoyée !</b><br>
+        Merci, votre demande est bien enregistrée. Vous recevez un email de confirmation dans quelques minutes, puis votre livrable sous 24-48&nbsp;h.
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <div class="ico">🛡️</div>
+      <div>
+        <b>Garantie 14 jours satisfait ou remboursé</b>
+        <p>Si le playbook ne vous apporte rien, écrivez-nous sous 14 jours : remboursement intégral, sans condition et sans justification. Vous ne prenez aucun risque.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div>
+      <div class="logo" style="margin-bottom:.4rem;">Marque<span>Vendable</span></div>
+      Le playbook pour construire une marque qu'on vous achète.
+    </div>
+    <div>
+      Contact&nbsp;: <a href="mailto:contact@marquevendable.fr">contact@marquevendable.fr</a><br>
+      Livraison 24-48&nbsp;h · Garantie 14 jours · Paiement sécurisé
+    </div>
+    <div>
+      © 2026 Marque Vendable. Tous droits réservés.<br>
+      Les cas cités (Thorne, Béis) sont des cas publics ; ce contenu ne constitue pas un conseil juridique, fiscal ou en investissement. Résultats non garantis.
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+<script>
+/* ============ SCÈNE 3D WEBGL — particules cyan/violet ============ */
+const canvas = document.getElementById('bg');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, .1, 100);
+camera.position.z = 8;
+
+/* Particules */
+const COUNT = 1800;
+const pos = new Float32Array(COUNT*3);
+const col = new Float32Array(COUNT*3);
+for (let i=0;i<COUNT;i++){
+  pos[i*3]   = (Math.random()-.5)*22;
+  pos[i*3+1] = (Math.random()-.5)*14;
+  pos[i*3+2] = (Math.random()-.5)*10 - 2;
+  const hue = Math.random() < .5 ? .50 + Math.random()*.08 : .72 + Math.random()*.10;
+  const c = new THREE.Color().setHSL(hue, .85, .55 + Math.random()*.35);
+  col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+}
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+const pts = new THREE.Points(geo, new THREE.PointsMaterial({ size:.035, vertexColors:true, transparent:true, opacity:.85 }));
+scene.add(pts);
+
+/* Noyaux wireframe */
+const core = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(1.6, 1),
+  new THREE.MeshBasicMaterial({ color:0x22d3ee, wireframe:true, transparent:true, opacity:.28 })
+);
+scene.add(core);
+
+const core2 = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(2.2, 1),
+  new THREE.MeshBasicMaterial({ color:0x7c3aed, wireframe:true, transparent:true, opacity:.12 })
+);
+scene.add(core2);
+
+/* Anneaux orbitaux */
+const ring = new THREE.Mesh(
+  new THREE.TorusGeometry(3.1, .008, 8, 90),
+  new THREE.MeshBasicMaterial({ color:0x5eead4, transparent:true, opacity:.35 })
+);
+scene.add(ring);
+
+const mouse = { x:0, y:0 };
+addEventListener('mousemove', e => {
+  mouse.x = (e.clientX/innerWidth -.5)*2;
+  mouse.y = (e.clientY/innerHeight -.5)*2;
+});
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ============ PARALLAXE CSS 3D ============ */
+const layers = document.querySelectorAll('.layer');
+addEventListener('mousemove', e => {
+  const x = (e.clientX/innerWidth -.5)*2, y = (e.clientY/innerHeight -.5)*2;
+  layers.forEach(l => {
+    const d = parseFloat(l.dataset.depth);
+    l.style.transform = `translate3d(${x*22*d}px, ${y*16*d}px, 0)`;
+  });
+  core.rotation.y += .0008; core.rotation.x += .0003;
+  ring.rotation.z += .0005;
+});
+
+/* Scroll : profondeur + rotation */
+addEventListener('scroll', () => {
+  const t = scrollY/innerHeight;
+  camera.position.z = 8 - t*4;
+  core.rotation.y = t*Math.PI*2;
+});
+
+/* Carte commande 3D au survol */
+const order = document.getElementById('order');
+order.addEventListener('mousemove', e => {
+  const r = order.getBoundingClientRect();
+  const rx = (e.clientY - r.top)/r.height -.5, ry = (e.clientX - r.left)/r.width -.5;
+  order.style.transform = `rotateX(${rx*-8}deg) rotateY(${ry*10}deg) translateZ(0)`;
+});
+order.addEventListener('mouseleave', () => { order.style.transform = 'rotateX(0) rotateY(0)'; });
+
+/* Boucle d'animation */
+(function animate(){
+  requestAnimationFrame(animate);
+  pts.rotation.y += .0006;
+  pts.rotation.x += .0002;
+  core.rotation.y += .0015;
+  core2.rotation.y -= .0008;
+  ring.rotation.x += .0012;
+  camera.position.x += (mouse.x*1.2 - camera.position.x)*.04;
+  camera.position.y += (-mouse.y*.9 - camera.position.y)*.04;
+  camera.lookAt(0,0,0);
+  renderer.render(scene, camera);
+})();
+
+/* ============ FORMULAIRE DE COMMANDE — EmailJS (réel) ============ */
+function selectOffer(value){
+  const sel = document.getElementById('offer');
+  for (let i=0;i<sel.options.length;i++){
+    if (sel.options[i].value === value){ sel.selectedIndex = i; break; }
+  }
+  sel.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+(function(){
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  script.onload = initEmailJS;
+  document.head.appendChild(script);
+
+  function initEmailJS(){
+    try { emailjs.init({ publicKey: '8Pui4ZEqxW2jRVF7h' }); } catch (err) { console.warn('EmailJS init', err); }
+  }
+
+  const form = document.getElementById('orderForm');
+  const btn = document.getElementById('sendBtn');
+  const ok = document.getElementById('successMsg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const offer = document.getElementById('offer').value;
+    const question = document.getElementById('question').value.trim();
+    if (!name || !email) return;
+
+    const fullQuestion = 'Commande : ' + offer + (question ? ' — ' + question : '');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    emailjs.send('service_cy1ytdb', 'template_xpo58cv', {
+      site: 'Marque Vendable',
+      name: name,
+      email: email,
+      question: fullQuestion
+    }).then(function(){
+      btn.textContent = '✓ Commande envoyée';
+      ok.classList.add('visible');
+      form.style.display = 'none';
+    }).catch(function(err){
+      console.error('EmailJS', err);
+      btn.disabled = false;
+      btn.textContent = 'Commander maintenant';
+      alert('Une erreur est survenue pendant l\'envoi. Merci de réessayer ou d\'écrire à contact@marquevendable.fr');
+    });
+  });
+})();
+</script>
+
+<script src="chatbot-config.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
