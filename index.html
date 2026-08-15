@@ -11,6 +11,22 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
 <meta name="description" content="Thorne vendue 3,8 Md$ à P&G. Béis : 210 M$. Deux marques solo, une méthode. Le playbook complet pour construire une marque vendable : positionnement premium, preuve, metrics build-to-sell, due diligence, exit. Playbook 19 €, playbook + 5 templates 39 €, pack préparation à l'exit 79 €.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Playbook Marque Vendable",
+  "description": "Le playbook pour construire une marque qu'on vous achète : 8 chapitres, les cas Thorne (3,8 Md$) et Béis (210 M$) décortiqués, 5 templates et un pack de préparation à l'exit.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "19",
+    "highPrice": "79",
+    "offerCount": "3",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Segoe UI', system-ui, sans-serif; background:#070b14; color:#e8ecf5; overflow-x:hidden; }
@@ -105,6 +121,12 @@
   .footer { border-top:1px solid rgba(255,255,255,.08); margin-top:2rem; padding:2.4rem 6vw 3rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; color:#5b6b85; font-size:.85rem; line-height:1.7; }
   .footer a { color:#7dd3fc; text-decoration:none; }
   .footer a:hover { text-decoration:underline; }
+  /* ---------- Révélation au scroll ---------- */
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity:1; transform:none; transition:none; }
+  }
 </style>
 </head>
 <body>
@@ -153,14 +175,14 @@
     <h2 class="section-title">Ce que contient la méthode</h2>
     <p class="section-intro">60 à 80 pages denses, zéro blabla. Chaque chapitre combine une leçon applicable, les chiffres réels des deux cas étudiés et une checklist d'action concrète. Vous ne lisez pas une théorie : vous suivez un chemin déjà emprunté par deux marques solo qui se sont vendues à neuf chiffres.</p>
 
-    <div class="stat-line">
+    <div class="stat-line reveal">
       <div class="stat-box"><b>3,8&nbsp;Md$</b><span>Thorne, vendue à P&amp;G</span></div>
       <div class="stat-box"><b>210&nbsp;M$</b><span>Béis, marque solo valorisée</span></div>
       <div class="stat-box"><b>8</b><span>chapitres, de la position au transfert</span></div>
       <div class="stat-box"><b>5</b><span>templates prêts à l'emploi</span></div>
     </div>
 
-    <div class="chapters">
+    <div class="chapters reveal">
       <div class="chapter"><div class="num">Chapitre 01</div><h3>Pourquoi les marques solo se vendent cher</h3><p>Ce qui fait réellement la valeur d'une marque, les 4 moteurs de valorisation et pourquoi l'absence d'équipe est un atout… à condition de gérer la dépendance fondateur.</p></div>
       <div class="chapter"><div class="num">Chapitre 02</div><h3>Le positionnement premium — leçon Thorne</h3><p>Comment une marque de santé a justifié un prix premium par la science et la confiance, et les 5 piliers pour positionner la vôtre au-dessus du marché.</p></div>
       <div class="chapter"><div class="num">Chapitre 03</div><h3>La preuve qui rassure l'acheteur</h3><p>Un acheteur paie pour ce qu'il peut vérifier. Construire la preuve (revenus, clients, récurrence, propriété intellectuelle) au fil de l'eau, pas la veille de la vente.</p></div>
@@ -178,7 +200,7 @@
     <h2 class="section-title">Trois façons de démarrer</h2>
     <p class="section-intro">Livraison par email sous 24-48&nbsp;h. Garantie 14 jours satisfait ou remboursé, sans condition. Le prix affiché est le prix final, sans abonnement caché.</p>
 
-    <div class="pricing">
+    <div class="pricing reveal">
       <div class="plan">
         <h3>Playbook PDF</h3>
         <div class="price">19&nbsp;€</div>
@@ -255,7 +277,7 @@
           <textarea id="question" placeholder="Ex. : je suis fondateur d'une marque de cosmétiques, je vise un exit dans 3 ans…"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="sendBtn" style="width:100%;">Commander maintenant</button>
-        <p class="note">🔒 Vos données servent uniquement à traiter votre commande. Aucun spam, désinscription en un clic. Garantie 14 jours satisfait ou remboursé.</p>
+        <p class="note">🔒 Vos données servent uniquement à traiter votre commande. Aucun spam, désinscription en un clic. Garantie 14 jours satisfait ou remboursé. Paiement par virement ou message direct — lien de paiement envoyé par email.</p>
       </form>
       <div class="success" id="successMsg">
         <b>✓ Commande envoyée !</b><br>
@@ -263,7 +285,7 @@
       </div>
     </div>
 
-    <div class="guarantee">
+    <div class="guarantee reveal">
       <div class="ico">🛡️</div>
       <div>
         <b>Garantie 14 jours satisfait ou remboursé</b>
@@ -450,6 +472,19 @@ function selectOffer(value){
 })();
 </script>
 
+<script>
+/* Révélation au scroll — progressif, non intrusif */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { for (var i=0;i<els.length;i++) els[i].classList.add('visible'); return; }
+  var io = new IntersectionObserver(function(entries){
+    for (var j=0;j<entries.length;j++){
+      if (entries[j].isIntersecting || entries[j].boundingClientRect.top < window.innerHeight) { entries[j].target.classList.add('visible'); io.unobserve(entries[j].target); }
+    }
+  }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+  for (var k=0;k<els.length;k++) io.observe(els[k]);
+})();
+</script>
 <script src="chatbot-config.js"></script>
 <script src="chatbot.js"></script>
 <script src="assets/js/voice-config.js"></script>
