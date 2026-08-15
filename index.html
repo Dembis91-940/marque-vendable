@@ -27,8 +27,8 @@
 
   /* ---------- Hero ---------- */
   .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; perspective:1000px; padding:6rem 6vw 4rem; }
-  .hero-inner { transform-style:preserve-3d; width:100%; max-width:1100px; }
-  .layer { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; will-change:transform; }
+  .hero-inner { transform-style:preserve-3d; width:100%; max-width:1100px; display:flex; flex-direction:column; align-items:center; }
+  .layer { margin:1.6rem 0;  position:relative; display:flex; align-items:center; justify-content:center; width:100%; will-change:transform; margin:1.6rem 0; }
   .badge { display:inline-flex; align-items:center; gap:.5rem; border:1px solid rgba(34,211,238,.35); background:rgba(34,211,238,.08);
            color:#7dd3fc; border-radius:999px; padding:.45rem 1.1rem; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; font-weight:600; }
   .title { font-size:clamp(2.1rem, 6vw, 4.6rem); font-weight:800; letter-spacing:-0.02em; line-height:1.15;
@@ -36,7 +36,7 @@
            text-shadow:0 0 40px rgba(56,189,248,.25); }
   .title .hl { display:block; font-size:clamp(1.5rem, 4.2vw, 3.1rem); font-weight:700;
                background:linear-gradient(120deg,#a5f3fc,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:.6rem; }
-  .subtitle { font-size:clamp(1rem, 2.2vw, 1.35rem); color:#9fb0c9; margin-top:1.4rem; font-weight:300; max-width:720px; margin-left:auto; margin-right:auto; }
+  .subtitle { line-height:1.5; font-size:clamp(1rem, 2.2vw, 1.35rem); color:#9fb0c9; margin-top:1.4rem; font-weight:300; max-width:720px; margin-left:auto; margin-right:auto; }
   .cta { margin-top:2.5rem; display:inline-flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
   .btn { padding:.9rem 2rem; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s, box-shadow .2s; border:none; cursor:pointer; font-size:1rem; font-family:inherit; }
   .btn-primary { background:linear-gradient(120deg,#0ea5e9,#7c3aed); color:#fff; box-shadow:0 0 30px rgba(124,58,237,.45); }
@@ -125,19 +125,19 @@
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="layer" data-depth="0.35" style="top:6%">
+      <div class="layer" data-depth="0.35">
         <div class="badge">Cas réels 2026 · Méthode actionnable</div>
       </div>
-      <div class="layer" data-depth="0.45" style="top:30%">
+      <div class="layer" data-depth="0.45">
         <div class="title">
           Thorne vendue 3,8&nbsp;Md$ à P&amp;G.
           <span class="hl">Béis&nbsp;: 210&nbsp;M$. Deux marques solo. Une méthode.</span>
         </div>
       </div>
-      <div class="layer" data-depth="0.55" style="top:62%">
+      <div class="layer" data-depth="0.55">
         <div class="subtitle">Le playbook qui décortique comment des fondateurs solo ont construit des marques que de grands groupes se sont arrachées — et comment appliquer la même méthode à la vôtre.</div>
       </div>
-      <div class="layer" data-depth="0.7" style="top:80%">
+      <div class="layer" data-depth="0.7">
         <div class="cta">
           <a class="btn btn-primary" href="#offres">Voir les offres →</a>
           <a class="btn btn-ghost" href="#playbook">Découvrir la méthode</a>
@@ -359,7 +359,7 @@ addEventListener('mousemove', e => {
   const x = (e.clientX/innerWidth -.5)*2, y = (e.clientY/innerHeight -.5)*2;
   layers.forEach(l => {
     const d = parseFloat(l.dataset.depth);
-    l.style.transform = `translate3d(${x*22*d}px, ${y*16*d}px, 0)`;
+    l.style.transform = `translate3d(${x*14*d}px, ${y*7*d}px, 0)`;
   });
   core.rotation.y += .0008; core.rotation.x += .0003;
   ring.rotation.z += .0005;
