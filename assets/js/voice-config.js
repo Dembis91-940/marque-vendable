@@ -6,5 +6,5 @@
 window.VOICE_CONFIG = {
   publicKey: "",       // ex: "abc123..." (clé publique Vapi)
   assistantId: "",     // ex: "a1b2c3d4-..." (assistant Vapi dédié au site)
-  accent: "#22d3ee"
+  accent: "#133c6e"
 };
