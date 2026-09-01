@@ -373,7 +373,8 @@ footer,.footer{background:#14090d !important;border-top:1px solid rgba(255,255,2
       © 2026 Marque Vendable. Tous droits réservés.<br>
       Les cas cités (Thorne, Béis) sont des cas publics ; ce contenu ne constitue pas un conseil juridique, fiscal ou en investissement. Résultats non garantis.
     </div>
-  </footer>
+    <div style="margin-top:.6rem;font-size:.82rem;opacity:.75"><a href="cgv.html">CGV</a> · <a href="mentions-legales.html">Mentions légales</a></div>
+</footer>
 
 </div>
 
@@ -483,57 +484,38 @@ order.addEventListener('mouseleave', () => { order.style.transform = 'rotateX(0)
 })();
 } catch (err) { var bgEl = document.getElementById('bg'); if (bgEl) bgEl.style.display = 'none'; }
 
-/* ============ FORMULAIRE DE COMMANDE — EmailJS (réel) ============ */
-function selectOffer(value){
-  const sel = document.getElementById('offer');
-  for (let i=0;i<sel.options.length;i++){
-    if (sel.options[i].value === value){ sel.selectedIndex = i; break; }
+/* ============ FORMULAIRE DE COMMANDE — Stripe (remplace EmailJS) ============ */
+var STRIPE_LINKS = {
+  'Playbook PDF — 19 €': 'https://buy.stripe.com/3cI7sNgDs9656nb0TGfrW05',
+  'Playbook + 5 templates — 39 €': 'https://buy.stripe.com/00w8wRdrggyx8vj8m8frW06',
+  'Pack préparation à l\'exit — 79 €': 'https://buy.stripe.com/cNicN75YObed12R7i4frW07'
+};
+function lienStripe(offerLabel) {
+  var url = STRIPE_LINKS[offerLabel];
+  if (!url) {
+    var m = /(\d+)\s*€/.exec(offerLabel);
+    var all = STRIPE_LINKS;
+    for (var k in all) { if (all.hasOwnProperty(k) && k.indexOf('— ' + m[1] + ' €') !== -1) { url = all[k]; break; } }
   }
-  sel.scrollIntoView({ behavior:'smooth', block:'center' });
+  return url || STRIPE_LINKS['Playbook PDF — 19 €'];
+}
+function selectOffer(value){
+  window.location.href = lienStripe(value);
 }
 
 (function(){
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-  script.onload = initEmailJS;
-  document.head.appendChild(script);
-
-  function initEmailJS(){
-    try { emailjs.init({ publicKey: '8Pui4ZEqxW2jRVF7h' }); } catch (err) { console.warn('EmailJS init', err); }
-  }
-
   const form = document.getElementById('orderForm');
+  if (!form) return;
   const btn = document.getElementById('sendBtn');
   const ok = document.getElementById('successMsg');
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
     const offer = document.getElementById('offer').value;
-    const question = document.getElementById('question').value.trim();
-    if (!name || !email) return;
-
-    const fullQuestion = 'Commande : ' + offer + (question ? ' — ' + question : '');
-    btn.disabled = true;
-    btn.textContent = 'Envoi en cours…';
-
-    emailjs.send('service_cy1ytdb', 'template_xpo58cv', {
-      site: 'Marque Vendable',
-      name: name,
-      email: email,
-      question: fullQuestion
-    }).then(function(){
-      btn.textContent = '✓ Commande envoyée';
-      ok.classList.add('visible');
-      form.style.display = 'none';
-    }).catch(function(err){
-      console.error('EmailJS', err);
-      btn.disabled = false;
-      btn.textContent = 'Commander maintenant';
-      alert('Une erreur est survenue pendant l\'envoi. Merci de réessayer ou d\'écrire à contact@marquevendable.fr');
-    });
+    window.location.href = lienStripe(offer);
   });
+  if (btn) btn.textContent = 'Payer avec Stripe — carte bancaire';
+  if (ok) ok.classList.remove('visible');
 })();
 </script>
 
